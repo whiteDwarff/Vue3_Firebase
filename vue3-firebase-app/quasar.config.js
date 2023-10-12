@@ -93,7 +93,8 @@ module.exports = configure(function (/* ctx */) {
           ],
           // 모든 폴더 중 components 안에 있는 모든 파일을 제외
           exclude: ['**/components/**'] 
-        } ]
+        } ],
+        ['vite-plugin-vue-layouts', {}],
       ]
     },
 

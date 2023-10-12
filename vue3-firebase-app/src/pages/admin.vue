@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div class="text-h4">About</div>
+    <router-view />
   </div>
 </template>
 
@@ -11,10 +11,7 @@
 <style lang="scss" scoped>
 
 </style>
-<!-- 커스텀 블럭 -->
-<!-- default layout을 정의 -->
 <route lang="yaml">
-meta:
-  layout: admin
-
+  meta:
+    layout: admin
 </route>
