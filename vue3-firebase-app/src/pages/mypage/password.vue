@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div class="text-h4">Temp Comp</div>
+    <div class="text-h5">Mypage/Password</div>
   </div>
 </template>
 

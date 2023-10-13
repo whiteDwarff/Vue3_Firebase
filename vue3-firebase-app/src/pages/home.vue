@@ -1,9 +1,14 @@
 <template>
-  <div>
-    <div class="text-h4">Home</div>
-    <div>{{  $route.name  }}</div>
-    <div>{{  $route.meta  }}</div>
-  </div>
+  <q-page padding>
+    <div>
+      <div class="text-h4">Home</div>
+      <section class="q-gutter-y-sm q-mt-lg">
+        <q-card v-for="id in 100" :key="id">
+          <q-card-section>{{ id }} 게시글</q-card-section>
+        </q-card>
+      </section>
+    </div>
+  </q-page>
 </template>
 
 <script setup>
@@ -13,9 +18,8 @@
 <style lang="scss" scoped>
 
 </style>
-<!-- route를 설정하는 옵션 -->
 <route lang="yaml">
   name: home-page
   meta: 
-    requiresAuth: true
+    width: 600px
 </route>

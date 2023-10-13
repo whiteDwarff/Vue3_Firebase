@@ -11,7 +11,9 @@
 <style lang="scss" scoped>
 
 </style>
-<!-- <route lang="yaml">
+<!-- 
+  TODO: 나중에 확인
+  <route lang="yaml">
 meta: 
   layout: admin
 </route> -->
