@@ -3,8 +3,6 @@
   <!-- quasar 사용 시 반드시 root 태그는 q로 시작되는 quasar 태그로 시작해야함 -->
     <!-- 
       bordered : border-bottom
-      bg-white : backgroud-color: #fff
-      text-grey-9 : color: grey
   -->
     <q-header bordered class="bg-white text-grey-9">
       <q-toolbar>
@@ -22,13 +20,7 @@
         <q-btn stretch flat label="수강하기" href="https://google.com" target="_black" /> 
         <q-btn stretch flat label="온라인 강의" href="https://naver.com" target="_black" /> 
         <q-btn stretch flat label="유튜브" href="https://youtube.com" target="_black" /> 
-        <!-- q-separator : | -->
         <q-separator class="q-my-md q-mr-md" vertical />
-        <!--
-          unelevated : 그림자 제거 
-          rounded    : 모서리 둥글게
-          color=""   : 배경색상 변경
-          -->
         <q-btn unelevated rounded color="primary" label="로그인 / 회원가입" @click="openAuthDialog"/>
       </q-toolbar>
     </q-header>
@@ -53,6 +45,6 @@ const pageContainerStyles = computed(() => ({
   margin: '0 auto'
 }));
 
-const authDialog = ref(true);
+const authDialog = ref(false);
 const openAuthDialog = () => authDialog.value = true;
 </script>
