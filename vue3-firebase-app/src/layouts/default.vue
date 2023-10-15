@@ -1,9 +1,7 @@
 <template>
+  <!-- 웹 접속 시 랜더링되어 보여지는 페이지, root -->
   <q-layout view="lHh Lpr lff" class="bg-grey-2">
   <!-- quasar 사용 시 반드시 root 태그는 q로 시작되는 quasar 태그로 시작해야함 -->
-    <!-- 
-      bordered : border-bottom
-  -->
     <q-header bordered class="bg-white text-grey-9">
       <q-toolbar>
         <q-btn flat dense to="/">

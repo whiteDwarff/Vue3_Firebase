@@ -57,7 +57,7 @@ module.exports = {
   rules: { 
     'vue/multi-word-component-names': 'off',
     'prefer-promise-reject-errors': 'off',
-
+    'vue/require-default-prop': 'off',
     // allow debugger during development only
     'no-debugger': process.env.NODE_ENV === 'production' ? 'error' : 'off',
   },
