@@ -1,5 +1,5 @@
 <template>
-  <q-card class="q-pa-lg">
+  <BaseCard class="q-pa-md" >
     <!-- 뒤로가기 등 아이콘 목록 -->
     <div class="flex q-mb-md">
       <q-btn icon="sym_o_arrow_back" flat round dense color="grey" size="16" />
@@ -45,11 +45,14 @@
       cupiditate.<br>Lorem ipsum dolor sit amet consectetur adipisicing elit. Commodi, ex maxime! Similique, illo ipsam
       placeat laudantium veritatis adipisci omnis repudiandae deserunt fugiat eos, doloremque, eius tempora quis
       consectetur! Nam, cupiditate.</div>
-  </q-card>
+  </BaseCard>
 </template>
 
 <script setup>
 import PostIcon from 'src/components/apps/post/PostIcon.vue';
+import BaseCard from 'src/components/base/BaseCard.vue';
+
+
 </script>
 
 <style lang="scss" scoped></style>
