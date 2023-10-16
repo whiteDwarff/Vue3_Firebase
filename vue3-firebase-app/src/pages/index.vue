@@ -1,4 +1,5 @@
 <template>
+  <!-- src/layouts/default.vue에 랜더링되는 페이지 -->
   <q-page padding>
     <div>
       <div class="row q-col-gutter-x-lg">
