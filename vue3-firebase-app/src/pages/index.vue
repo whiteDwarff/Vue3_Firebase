@@ -10,9 +10,14 @@
           <PostList :items="posts"/>
         </section>
 
-        <PostRightBar class="col-3" />
+        <PostRightBar
+          class="col-3"
+          @open-write-dialog="openWriteDialog"
+        />
       </div>
     </div>
+
+    <PostWriteDialog v-model="postDialog"/>
   </q-page>
 </template>
 
@@ -21,9 +26,11 @@ import PostList from 'src/components/apps/post/PostList.vue';
 import PostHeader from './components/PostHeader.vue';
 import PostLeftBar from './components/PostLeftBar.vue';
 import PostRightBar from './components/PostRightBar.vue';
+import PostWriteDialog from 'src/components/apps/post/PostWriteDialog.vue';
+import { ref } from 'vue';
 
 const posts = Array.from(Array(20), (_, index) => ({
-  id: index,
+  id: 'A' +  index,
   title: `Vue3 Firebase 강의 ${index}`,
   content: 'Lorem ipsum dolor sit amet consectetur, adipisicing elit. Amet, ea labore sed ex quidem nesciunt, obcaecati aut eveniet sint cupiditate eligendi, voluptas libero corrupti doloribus quasi neque ullam sunt magnam.',
   readCount: 1,
@@ -34,6 +41,11 @@ const posts = Array.from(Array(20), (_, index) => ({
   uid: 'uid',
   category: `카테고리${index}`,
 }));
+
+const postDialog = ref(false)
+const openWriteDialog = () => {
+  postDialog.value = true;
+}
 </script>
 
 <style lang="scss" scoped></style>

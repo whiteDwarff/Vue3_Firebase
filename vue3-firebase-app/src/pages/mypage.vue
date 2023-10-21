@@ -1,27 +1,42 @@
 <template>
-  <div>
-  <div class="text-h2">MyPage</div>
-  <ul>
-    <li>
-      <router-link to="/mypage/profile">Profile</router-link>
-    </li>
-    <li>
-      <router-link to="/mypage/password">Password</router-link>
-    </li>
-    <li>
-      <router-link to="/mypage/bookmark">Bookmark</router-link>
-    </li>
-  </ul>
-  <!-- child component -->
-  <router-view></router-view>
+  <q-page padding>
+    <div class="row  q-col-gutter-lg">
 
-  </div>
+      <div class="col-4">
+        <BaseCard>
+          <q-list bordered separator>
+            <q-item v-ripple clickable to="/mypage/profile">
+              <q-item-section avatar>
+                <q-icon name="sym_o_account_circle"></q-icon>
+              </q-item-section>
+              <q-item-section>profile</q-item-section>
+            </q-item>
+            <q-item v-ripple clickable to="/mypage/password">
+              <q-item-section avatar>
+                <q-icon name="sym_o_lock"></q-icon>
+              </q-item-section>
+              <q-item-section>비밀번호 변경</q-item-section>
+            </q-item>
+            <q-item v-ripple clickable to="/mypage/bookmark">
+              <q-item-section avatar>
+                <q-icon name="sym_o_bookmark"></q-icon>
+              </q-item-section>
+              <q-item-section>북마크</q-item-section>
+            </q-item>
+          </q-list>
+        </BaseCard>
+      </div>
+
+      <div class="col-8">
+        <router-view></router-view>
+      </div>
+    </div>
+    <!-- child component -->
+  </q-page>
 </template>
 
 <script setup>
-
+import BaseCard from 'src/components/base/BaseCard.vue';
 </script>
 
-<style lang="scss" scoped>
-
-</style>
+<style lang="scss" scoped></style>

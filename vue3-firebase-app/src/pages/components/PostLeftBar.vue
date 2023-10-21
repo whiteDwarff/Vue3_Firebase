@@ -6,7 +6,7 @@
           <q-item v-ripple clickable :active="true">
             <q-item-section>전체</q-item-section>
           </q-item>
-          <q-item v-for="cate in categorys" :key="cate.value" v-ripple clickable>
+          <q-item v-for="cate in categories" :key="cate.value" v-ripple clickable>
             <q-item-section>{{ cate.label }}</q-item-section>
           </q-item>
         </q-list>
@@ -16,12 +16,9 @@
 
 <script setup>
 import StickySideBar from 'src/components/StickySideBar.vue';
-const categorys = [
-  {label: 'Q&A', value: 'qna'},
-  {label: '커뮤니티', value: 'community'},
-  {label: '공지사항', value: 'notice'},
-  {label: '강의', value: 'lecture'},
-]
+import { getCategories } from 'src/service/category.js';
+
+const categories = getCategories();
 </script>
 
 <style lang="scss" scoped>

@@ -1,7 +1,7 @@
 <template>
   <!-- 웹 접속 시 랜더링되어 보여지는 페이지, root -->
   <q-layout view="lHh Lpr lff" class="bg-grey-2">
-  <!-- quasar 사용 시 반드시 root 태그는 q로 시작되는 quasar 태그로 시작해야함 -->
+    <!-- quasar 사용 시 반드시 root 태그는 q로 시작되는 quasar 태그로 시작해야함 -->
     <q-header bordered class="bg-white text-grey-9">
       <q-toolbar>
         <q-btn flat dense to="/">
@@ -14,24 +14,44 @@
         </q-btn>
         <q-space />
         <!-- 컴포넌트로 이동: to="route 경로", 외부경로 이동: href="외부경로" label="": innerText-->
-        <q-btn stretch flat label="Home" to="/home"/>
-        <q-btn stretch flat label="수강하기" href="https://google.com" target="_black" /> 
-        <q-btn stretch flat label="온라인 강의" href="https://naver.com" target="_black" /> 
-        <q-btn stretch flat label="유튜브" href="https://youtube.com" target="_black" /> 
+        <q-btn stretch flat label="Home" to="/home" />
+        <q-btn stretch flat label="수강하기" href="https://google.com" target="_black" />
+        <q-btn stretch flat label="온라인 강의" href="https://naver.com" target="_black" />
+        <q-btn stretch flat label="유튜브" href="https://youtube.com" target="_black" />
         <q-separator class="q-my-md q-mr-md" vertical />
-        <q-btn unelevated rounded color="primary" label="로그인 / 회원가입" @click="openAuthDialog"/>
+        <q-btn unelevated rounded color="primary" label="로그인 / 회원가입" @click="openAuthDialog" />
+        <q-btn flat round>
+          <q-avatar>
+            <img src="https://cdn.quasar.dev/img/avatar.png">
+          </q-avatar>
+          <q-menu>
+            <q-list style="min-width: 100px">
+              <q-item
+                v-close-popup
+                clickable
+                to="/mypage/profile"
+              >
+                <q-item-section>프로필</q-item-section>
+              </q-item>
+              <q-item v-close-popup clickable>
+                <q-item-section>로그아웃</q-item-section>
+              </q-item>
+            </q-list>
+          </q-menu>
+        </q-btn>
+
       </q-toolbar>
     </q-header>
 
     <q-page-container :style="pageContainerStyles">
       <router-view />
     </q-page-container>
-    <AuthDialog v-model="authDialog"/>
+    <AuthDialog v-model="authDialog" />
   </q-layout>
 </template>
 <script setup>
 import { computed, ref } from 'vue';
-import {useRoute} from 'vue-router'
+import { useRoute } from 'vue-router'
 
 import AuthDialog from 'src/components/auth/AuthDialog.vue';
 

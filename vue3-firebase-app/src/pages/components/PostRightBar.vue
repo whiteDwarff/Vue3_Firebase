@@ -5,6 +5,7 @@
         padding="8px 12px 8px 8px"
         unelevated
         class="bg-primary text-white full-width"
+        @click="$emit('openWriteDialog')"
       >
         <q-avatar
           class="q-mr-sm bg-white text-primary"
@@ -72,7 +73,7 @@
 <script setup>
 import StickySideBar from 'src/components/StickySideBar.vue';
 import { ref } from 'vue';
-
+defineEmits(['openWriteDialog'])
 const tags = ref([
   {name: 'vuejs', count: 10},
   {name: 'react', count: 8},
