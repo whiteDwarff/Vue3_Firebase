@@ -2,12 +2,9 @@ import { boot } from 'quasar/wrappers'
 // Import the functions you need from the SDKs you need
 import { initializeApp } from "firebase/app";
 import { getAnalytics } from "firebase/analytics";
-import {getAuth } from 'firebase/auth';
-// TODO: Add SDKs for Firebase products that you want to use
-// https://firebase.google.com/docs/web/setup#available-libraries
+import { getAuth, onAuthStateChanged } from "firebase/auth";
+import { useAuthStore } from 'src/stores/auth';
 
-// Your web app's Firebase configuration
-// For Firebase JS SDK v7.20.0 and later, measurementId is optional
 const firebaseConfig = {
   apiKey: "AIzaSyCaeO8jJldUTZuVaFAqtl3DK3UnMzLu2e0",
   authDomain: "munho-vue3-firebase-app.firebaseapp.com",
@@ -26,8 +23,14 @@ const auth = getAuth(app);
 export {
   auth,
 }
-// "async" is optional;
-// more info on params: https://v2.quasar.dev/quasar-cli/boot-files
+
 export default boot(async (/* { app, router, ... } */) => {
-  // something to do
-})
+  const authStore = useAuthStore();
+
+  // 로그인과 로그아웃 시 사용자의 정보를 가져올 수 있음
+  // 첫번째 인자로 auth 객체, 두번째 인자로 callback (user정보)를 사용
+  onAuthStateChanged(auth, user => {
+    authStore.setUser(user);
+    console.log('### user : ', user);
+  });
+});

@@ -25,11 +25,22 @@
       </div>
       
         <q-separator />
-      <q-btn label="구글 계정으로 로그인하기" class="full-width text-primary" outline></q-btn>
+      <q-btn
+        label="구글 계정으로 로그인하기"
+        class="full-width text-primary"
+        outline
+        @click="handleSignInGoogle"
+      />
     </q-form>
   </div>
 </template>
 
 <script setup>
+import { signInWithGoogle } from 'src/service/auth';
 defineEmits(['changeView']);
+
+// google login 
+const handleSignInGoogle = async () => {
+  await signInWithGoogle();
+}
 </script>

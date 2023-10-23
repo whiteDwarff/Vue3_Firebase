@@ -18,11 +18,26 @@
         <q-btn stretch flat label="수강하기" href="https://google.com" target="_black" />
         <q-btn stretch flat label="온라인 강의" href="https://naver.com" target="_black" />
         <q-btn stretch flat label="유튜브" href="https://youtube.com" target="_black" />
+
         <q-separator class="q-my-md q-mr-md" vertical />
-        <q-btn unelevated rounded color="primary" label="로그인 / 회원가입" @click="openAuthDialog" />
-        <q-btn flat round>
+        
+        <!-- login 정보가 없을 시 로그인 / 회원가입 표시 -->
+        <q-btn
+          v-if="!authStore.isAuthenticated"
+          unelevated
+          rounded
+          color="primary"
+          label="로그인 / 회원가입"
+          @click="openAuthDialog" 
+        />
+        <!-- login 정보가 있는 경우 avatar 표시 -->
+        <q-btn 
+          v-if="authStore.isAuthenticated"
+          flat
+          round
+        >
           <q-avatar>
-            <img src="https://cdn.quasar.dev/img/avatar.png">
+            <img :src="authStore.user.photoURL">
           </q-avatar>
           <q-menu>
             <q-list style="min-width: 100px">
@@ -33,7 +48,11 @@
               >
                 <q-item-section>프로필</q-item-section>
               </q-item>
-              <q-item v-close-popup clickable>
+              <q-item
+                v-close-popup
+                clickable
+                @click="handleLogout"
+              >
                 <q-item-section>로그아웃</q-item-section>
               </q-item>
             </q-list>
@@ -52,9 +71,18 @@
 <script setup>
 import { computed, ref } from 'vue';
 import { useRoute } from 'vue-router'
-
+import { useAuthStore } from 'src/stores/auth';
 import AuthDialog from 'src/components/auth/AuthDialog.vue';
 
+import { logout } from 'src/service/auth';
+// ---------------------------------------------
+// store 정의 
+const authStore = useAuthStore();
+// logout 
+const handleLogout = async () => {
+  if(confirm('로그아웃 하시겠습니까?')) await logout();
+}
+// ---------------------------------------------
 const route = useRoute();
 const pageContainerStyles = computed(() => ({
   //옵셔널 체이닝(Null 병합 연산자)을 사용하여 route.meta 객체에서 width 속성을 가져온다
@@ -62,7 +90,7 @@ const pageContainerStyles = computed(() => ({
   maxWidth: route.meta?.width || '1080px',
   margin: '0 auto'
 }));
-
+// 
 const authDialog = ref(false);
 const openAuthDialog = () => authDialog.value = true;
 </script>
