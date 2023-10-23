@@ -2,7 +2,7 @@
   <!--
     model-value : default에서 props로 받은 state
     update:model-value : state가 변경될 때 default로 변경된 state를 올려줌
-      - v-close-popup 으로 인해 state 변경
+    v-close-popup 으로 인해 state 변경
   -->
   <q-dialog
   :model-value="modelValue"
@@ -20,6 +20,7 @@
         <component
         :is="authViewComponents[viewMode]" 
         @change-view="changeViewMode"
+        @close-dialog="closeDialog"
         />
       </q-card-section>
 
@@ -36,7 +37,7 @@ defineProps({
     defalut: false,
   }
 });
-defineEmits(['update:modelValue']);
+const emit = defineEmits(['update:modelValue']);
 
 const viewMode = ref('SignInForm');
 const changeViewMode = mode => {
@@ -50,5 +51,8 @@ const authViewComponents = {
   SignInForm: defineAsyncComponent(() => import('./SignInForm.vue')),
   SignUpForm: defineAsyncComponent(() => import('./SignUpForm.vue')),
   FindPasswordForm: defineAsyncComponent(() => import('./FindPasswordForm.vue')),
+}
+const closeDialog = () => {
+  emit('update:modelValue', false);
 }
 </script>

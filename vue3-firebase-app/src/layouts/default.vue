@@ -37,7 +37,7 @@
           round
         >
           <q-avatar>
-            <img :src="authStore.user.photoURL">
+            <img :src="authStore.user.photoURL || defaultPhotoURL(authStore.user.uid)">
           </q-avatar>
           <q-menu>
             <q-list style="min-width: 100px">
@@ -74,7 +74,7 @@ import { useRoute } from 'vue-router'
 import { useAuthStore } from 'src/stores/auth';
 import AuthDialog from 'src/components/auth/AuthDialog.vue';
 
-import { logout } from 'src/service/auth';
+import { logout, defaultPhotoURL } from 'src/service/';
 // ---------------------------------------------
 // store 정의 
 const authStore = useAuthStore();
