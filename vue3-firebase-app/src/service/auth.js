@@ -1,6 +1,13 @@
 // google로 로그인 하기 
 
-import { GoogleAuthProvider, createUserWithEmailAndPassword, signInWithEmailAndPassword, signInWithPopup, signOut, updateProfile } from "firebase/auth";
+import { 
+  GoogleAuthProvider,
+  createUserWithEmailAndPassword,
+  signInWithEmailAndPassword,
+  signInWithPopup,
+  signOut,
+  updateProfile,
+  sendPasswordResetEmail } from "firebase/auth";
 import { auth } from "src/boot/firebase";
 
 const DEFAULT_PHOTO_URL =
@@ -9,7 +16,6 @@ const DEFAULT_PHOTO_URL =
 export function defaultPhotoURL(uid) {
     return`${DEFAULT_PHOTO_URL}${uid}`;
 }
-
 // 구글로 가입하기
 export async function signInWithGoogle() {
   // google의 객체 인스턴스 생성 
@@ -41,4 +47,12 @@ export async function signUpWithEmail({ email, password, nickname }){
 export async function signInWithEmail({email, password}) {
   const { user } = signInWithEmailAndPassword(auth, email, password);
   return user;
+}
+// 비밀번호 찾기
+export async function sendPasswordReset(email) {
+  try {
+    await sendPasswordResetEmail(auth, email);
+  } catch(err) {
+    console.log(err.message);
+  }
 }

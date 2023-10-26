@@ -18,9 +18,9 @@
 
       <q-card-section class="q-px-xl q-pb-xl">
         <component
-        :is="authViewComponents[viewMode]" 
-        @change-view="changeViewMode"
-        @close-dialog="closeDialog"
+          :is="authViewComponents[viewMode]" 
+          @change-view="changeViewMode"
+          @close-dialog="closeDialog"
         />
       </q-card-section>
 
