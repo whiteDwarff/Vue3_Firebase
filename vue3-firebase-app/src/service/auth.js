@@ -7,7 +7,8 @@ import {
   signInWithPopup,
   signOut,
   updateProfile,
-  sendPasswordResetEmail } from "firebase/auth";
+  sendPasswordResetEmail, 
+  updatePassword} from "firebase/auth";
 import { auth } from "src/boot/firebase";
 
 const DEFAULT_PHOTO_URL =
@@ -52,6 +53,14 @@ export async function signInWithEmail({email, password}) {
 export async function sendPasswordReset(email) {
   try {
     await sendPasswordResetEmail(auth, email);
+  } catch(err) {
+    console.log(err.message);
+  }
+}
+// 비밀번호 변경
+export async function updateUserPassword(newPassword) {
+  try {
+    await updatePassword(auth.currentUser, newPassword);
   } catch(err) {
     console.log(err.message);
   }
