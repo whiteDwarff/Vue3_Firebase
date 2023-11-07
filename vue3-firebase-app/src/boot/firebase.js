@@ -31,6 +31,6 @@ export default boot(async (/* { app, router, ... } */) => {
   // 첫번째 인자로 auth 객체, 두번째 인자로 callback (user정보)를 사용
   onAuthStateChanged(auth, user => {
     authStore.setUser(user);
-    console.log('### user : ', user);
+    console.log('user : ', user);
   });
 });

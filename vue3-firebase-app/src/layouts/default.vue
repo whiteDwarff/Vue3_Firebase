@@ -40,13 +40,26 @@
             <img :src="authStore.user.photoURL || defaultPhotoURL(authStore.user.uid)">
           </q-avatar>
           <q-menu>
-            <q-list style="min-width: 100px">
+            <q-list style="min-width: 140px">
               <q-item
+                v-if="authStore.user.emailVerified"
                 v-close-popup
                 clickable
                 to="/mypage/profile"
               >
                 <q-item-section>프로필</q-item-section>
+              </q-item>
+              <q-item
+                v-else
+                v-close-popup
+                clickable
+              >
+                <q-item-section 
+                  class="text-red"
+                  @click="verifyEmail"
+                >
+                이메일을 인증해주세요.
+                </q-item-section>
               </q-item>
               <q-item
                 v-close-popup
@@ -70,17 +83,23 @@
 </template>
 <script setup>
 import { computed, ref } from 'vue';
+import { useQuasar } from 'quasar';
 import { useRoute } from 'vue-router'
 import { useAuthStore } from 'src/stores/auth';
 import AuthDialog from 'src/components/auth/AuthDialog.vue';
 
-import { logout, defaultPhotoURL } from 'src/service/';
+import { logout, defaultPhotoURL, sendVerifictionEmail } from 'src/service/';
+
+const $q = useQuasar();
 // ---------------------------------------------
 // store 정의 
 const authStore = useAuthStore();
 // logout 
 const handleLogout = async () => {
-  if(confirm('로그아웃 하시겠습니까?')) await logout();
+  if(confirm('로그아웃 하시겠습니까?')) {
+    await logout();
+    $q.notify('로그아웃 되었습니다.')
+  }
 }
 // ---------------------------------------------
 const route = useRoute();
@@ -93,4 +112,10 @@ const pageContainerStyles = computed(() => ({
 // 
 const authDialog = ref(false);
 const openAuthDialog = () => authDialog.value = true;
+// ---------------------------------------------
+// email 보내기 
+const verifyEmail = async () => {
+  await sendVerifictionEmail();
+  $q.notify('이메일을 확인해주세요.');
+}
 </script>

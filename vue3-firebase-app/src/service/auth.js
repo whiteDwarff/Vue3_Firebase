@@ -8,7 +8,9 @@ import {
   signOut,
   updateProfile,
   sendPasswordResetEmail, 
-  updatePassword} from "firebase/auth";
+  updatePassword,
+  sendEmailVerification,
+  updateEmail } from "firebase/auth";
 import { auth } from "src/boot/firebase";
 
 const DEFAULT_PHOTO_URL =
@@ -40,6 +42,7 @@ export async function signUpWithEmail({ email, password, nickname }){
       displayName: nickname,
       photoURL: `${DEFAULT_PHOTO_URL}${user.uid}`,
     })
+    sendVerifictionEmail();
   } catch(err) {
     console.log(err.message);
   }
@@ -64,4 +67,19 @@ export async function updateUserPassword(newPassword) {
   } catch(err) {
     console.log(err.message);
   }
+}
+// 사용자에게 인증 메일 보내기 
+export async function sendVerifictionEmail() {
+  await sendEmailVerification(auth.currentUser);
+}
+// 비밀번호 업데이트
+export async function updateUserProfile(displayName) {
+  await updateProfile(auth.currentUser, {
+    displayName,
+  });
+}
+// 이메일 업데이트
+export async function updateUserEmail(email) {
+  console.log(typeof email);
+  await updateEmail(auth.currentUser, email)
 }
