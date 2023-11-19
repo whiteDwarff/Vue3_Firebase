@@ -72,7 +72,7 @@ export async function updateUserPassword(newPassword) {
 export async function sendVerifictionEmail() {
   await sendEmailVerification(auth.currentUser);
 }
-// 비밀번호 업데이트
+// 닉네임 업데이트
 export async function updateUserProfile(displayName) {
   await updateProfile(auth.currentUser, {
     displayName,
